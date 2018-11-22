@@ -1,0 +1,72 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+        </head>
+        <body>
+        <div class="section" id="id1">
+<h1>10.6 重新加载模块<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id2">
+<h2>问题<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>你想重新加载已经加载的模块，因为你对其源码进行了修改。</p>
+</div>
+<div class="section" id="id3">
+<h2>解决方案<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>使用imp.reload()来重新加载先前加载的模块。举个例子：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spam</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">imp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">imp</span><span class="o">.</span><span class="n">reload</span><span class="p">(</span><span class="n">spam</span><span class="p">)</span>
+<span class="go">&lt;module 'spam' from './spam.py'&gt;</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>讨论<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>重新加载模块在开发和调试过程中常常很有用。但在生产环境中的代码使用会不安全，因为它并不总是像您期望的那样工作。</p>
+<p>reload()擦除了模块底层字典的内容，并通过重新执行模块的源代码来刷新它。模块对象本身的身份保持不变。因此，该操作在程序中所有已经被导入了的地方更新了模块。</p>
+<p>尽管如此，reload()没有更新像”from module import name”这样使用import语句导入的定义。举个例子：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># spam.py</span>
+<span class="k">def</span> <span class="nf">bar</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">'bar'</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">grok</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">'grok'</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>现在启动交互式会话：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spam</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">spam</span> <span class="kn">import</span> <span class="n">grok</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">spam</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+<span class="go">bar</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grok</span><span class="p">()</span>
+<span class="go">grok</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>不退出Python修改spam.py的源码，将grok()函数改成这样：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">grok</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">'New grok'</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>现在回到交互式会话，重新加载模块，尝试下这个实验：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">imp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">imp</span><span class="o">.</span><span class="n">reload</span><span class="p">(</span><span class="n">spam</span><span class="p">)</span>
+<span class="go">&lt;module 'spam' from './spam.py'&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">spam</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+<span class="go">bar</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grok</span><span class="p">()</span> <span class="c1"># Notice old output</span>
+<span class="go">grok</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">spam</span><span class="o">.</span><span class="n">grok</span><span class="p">()</span> <span class="c1"># Notice new output</span>
+<span class="go">New grok</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>在这个例子中，你看到有2个版本的grok()函数被加载。通常来说，这不是你想要的，而是令人头疼的事。</p>
+<p>因此，在生产环境中可能需要避免重新加载模块。在交互环境下调试，解释程序并试图弄懂它。</p>
+</div>
+</div>
+        </body>
+        </html>
+        

@@ -1,0 +1,53 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+        </head>
+        <body>
+        <div class="section" id="id1">
+<h1>1.17 从字典中提取子集<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id2">
+<h2>问题<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>你想构造一个字典，它是另外一个字典的子集。</p>
+</div>
+<div class="section" id="id3">
+<h2>解决方案<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>最简单的方式是使用字典推导。比如：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">prices</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'ACME'</span><span class="p">:</span> <span class="mf">45.23</span><span class="p">,</span>
+    <span class="s1">'AAPL'</span><span class="p">:</span> <span class="mf">612.78</span><span class="p">,</span>
+    <span class="s1">'IBM'</span><span class="p">:</span> <span class="mf">205.55</span><span class="p">,</span>
+    <span class="s1">'HPQ'</span><span class="p">:</span> <span class="mf">37.20</span><span class="p">,</span>
+    <span class="s1">'FB'</span><span class="p">:</span> <span class="mf">10.75</span>
+<span class="p">}</span>
+<span class="c1"># Make a dictionary of all prices over 200</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">prices</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="mi">200</span><span class="p">}</span>
+<span class="c1"># Make a dictionary of tech stocks</span>
+<span class="n">tech_names</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'AAPL'</span><span class="p">,</span> <span class="s1">'IBM'</span><span class="p">,</span> <span class="s1">'HPQ'</span><span class="p">,</span> <span class="s1">'MSFT'</span><span class="p">}</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">prices</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">tech_names</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>讨论<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>大多数情况下字典推导能做到的，通过创建一个元组序列然后把它传给 <code class="docutils literal notranslate"><span class="pre">dict()</span></code> 函数也能实现。比如：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">prices</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>但是，字典推导方式表意更清晰，并且实际上也会运行的更快些
+（在这个例子中，实际测试几乎比 <code class="docutils literal notranslate"><span class="pre">dict()</span></code> 函数方式快整整一倍）。</p>
+<p>有时候完成同一件事会有多种方式。比如，第二个例子程序也可以像这样重写：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make a dictionary of tech stocks</span>
+<span class="n">tech_names</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">'AAPL'</span><span class="p">,</span> <span class="s1">'IBM'</span><span class="p">,</span> <span class="s1">'HPQ'</span><span class="p">,</span> <span class="s1">'MSFT'</span> <span class="p">}</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="p">{</span> <span class="n">key</span><span class="p">:</span><span class="n">prices</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">prices</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="o">&amp;</span> <span class="n">tech_names</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>但是，运行时间测试结果显示这种方案大概比第一种方案慢 1.6 倍。
+如果对程序运行性能要求比较高的话，需要花点时间去做计时测试。
+关于更多计时和性能测试，可以参考 14.13 小节。</p>
+</div>
+</div>
+        </body>
+        </html>
+        

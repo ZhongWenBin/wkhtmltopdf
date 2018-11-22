@@ -1,0 +1,145 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+        </head>
+        <body>
+        <div class="section" id="id1">
+<h1>13.2 终止程序并给出错误信息<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id2">
+<h2>问题<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>你想向标准错误打印一条消息并返回某个非零状态码来终止程序运行</p>
+</div>
+<div class="section" id="id3">
+<h2>解决方案<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>你有一个程序像下面这样终止，抛出一个 <code class="docutils literal notranslate"><span class="pre">SystemExit</span></code> 异常，使用错误消息作为参数。例如：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="s1">'It failed!'</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>它会将消息在 <code class="docutils literal notranslate"><span class="pre">sys.stderr</span></code> 中打印，然后程序以状态码1退出。</p>
+</div>
+<div class="section" id="id4">
+<h2>讨论<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>本节虽然很短小，但是它能解决在写脚本时的一个常见问题。
+也就是说，当你想要终止某个程序时，你可能会像下面这样写：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">'It failed!</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
+<span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>如果你直接将消息作为参数传给 <code class="docutils literal notranslate"><span class="pre">SystemExit()</span></code> ，那么你可以省略其他步骤，
+比如import语句或将错误消息写入 <code class="docutils literal notranslate"><span class="pre">sys.stderr</span></code></p>
+</div>
+</div>
+        </body>
+        </html>
+        
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+        </head>
+        <body>
+        <div class="section" id="id1">
+<h1>13.2 终止程序并给出错误信息<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id2">
+<h2>问题<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>你想向标准错误打印一条消息并返回某个非零状态码来终止程序运行</p>
+</div>
+<div class="section" id="id3">
+<h2>解决方案<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>你有一个程序像下面这样终止，抛出一个 <code class="docutils literal notranslate"><span class="pre">SystemExit</span></code> 异常，使用错误消息作为参数。例如：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="s1">'It failed!'</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>它会将消息在 <code class="docutils literal notranslate"><span class="pre">sys.stderr</span></code> 中打印，然后程序以状态码1退出。</p>
+</div>
+<div class="section" id="id4">
+<h2>讨论<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>本节虽然很短小，但是它能解决在写脚本时的一个常见问题。
+也就是说，当你想要终止某个程序时，你可能会像下面这样写：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">'It failed!</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
+<span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>如果你直接将消息作为参数传给 <code class="docutils literal notranslate"><span class="pre">SystemExit()</span></code> ，那么你可以省略其他步骤，
+比如import语句或将错误消息写入 <code class="docutils literal notranslate"><span class="pre">sys.stderr</span></code></p>
+</div>
+</div>
+        </body>
+        </html>
+        
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+        </head>
+        <body>
+        <div class="section" id="id1">
+<h1>13.2 终止程序并给出错误信息<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id2">
+<h2>问题<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>你想向标准错误打印一条消息并返回某个非零状态码来终止程序运行</p>
+</div>
+<div class="section" id="id3">
+<h2>解决方案<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>你有一个程序像下面这样终止，抛出一个 <code class="docutils literal notranslate"><span class="pre">SystemExit</span></code> 异常，使用错误消息作为参数。例如：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="s1">'It failed!'</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>它会将消息在 <code class="docutils literal notranslate"><span class="pre">sys.stderr</span></code> 中打印，然后程序以状态码1退出。</p>
+</div>
+<div class="section" id="id4">
+<h2>讨论<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>本节虽然很短小，但是它能解决在写脚本时的一个常见问题。
+也就是说，当你想要终止某个程序时，你可能会像下面这样写：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">'It failed!</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
+<span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>如果你直接将消息作为参数传给 <code class="docutils literal notranslate"><span class="pre">SystemExit()</span></code> ，那么你可以省略其他步骤，
+比如import语句或将错误消息写入 <code class="docutils literal notranslate"><span class="pre">sys.stderr</span></code></p>
+</div>
+</div>
+        </body>
+        </html>
+        
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+        </head>
+        <body>
+        <div class="section" id="id1">
+<h1>13.2 终止程序并给出错误信息<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id2">
+<h2>问题<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>你想向标准错误打印一条消息并返回某个非零状态码来终止程序运行</p>
+</div>
+<div class="section" id="id3">
+<h2>解决方案<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>你有一个程序像下面这样终止，抛出一个 <code class="docutils literal notranslate"><span class="pre">SystemExit</span></code> 异常，使用错误消息作为参数。例如：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="s1">'It failed!'</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>它会将消息在 <code class="docutils literal notranslate"><span class="pre">sys.stderr</span></code> 中打印，然后程序以状态码1退出。</p>
+</div>
+<div class="section" id="id4">
+<h2>讨论<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>本节虽然很短小，但是它能解决在写脚本时的一个常见问题。
+也就是说，当你想要终止某个程序时，你可能会像下面这样写：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">'It failed!</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
+<span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>如果你直接将消息作为参数传给 <code class="docutils literal notranslate"><span class="pre">SystemExit()</span></code> ，那么你可以省略其他步骤，
+比如import语句或将错误消息写入 <code class="docutils literal notranslate"><span class="pre">sys.stderr</span></code></p>
+</div>
+</div>
+        </body>
+        </html>
+        

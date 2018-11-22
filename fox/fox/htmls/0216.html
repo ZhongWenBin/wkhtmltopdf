@@ -1,0 +1,66 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+        </head>
+        <body>
+        <div class="section" id="id1">
+<h1>2.16 以指定列宽格式化字符串<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id2">
+<h2>问题<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>你有一些长字符串，想以指定的列宽将它们重新格式化。</p>
+</div>
+<div class="section" id="id3">
+<h2>解决方案<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">textwrap</span></code> 模块来格式化字符串的输出。比如，假如你有下列的长字符串：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s2">"Look into my eyes, look into my eyes, the eyes, the eyes, </span><span class="se">\</span>
+<span class="s2">the eyes, not around the eyes, don't look around the eyes, </span><span class="se">\</span>
+<span class="s2">look into my eyes, you're under."</span>
+</pre></div>
+</div>
+<p>下面演示使用 <code class="docutils literal notranslate"><span class="pre">textwrap</span></code> 格式化字符串的多种方式：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">textwrap</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">70</span><span class="p">))</span>
+<span class="go">Look into my eyes, look into my eyes, the eyes, the eyes, the eyes,</span>
+<span class="go">not around the eyes, don't look around the eyes, look into my eyes,</span>
+<span class="go">you're under.</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">40</span><span class="p">))</span>
+<span class="go">Look into my eyes, look into my eyes,</span>
+<span class="go">the eyes, the eyes, the eyes, not around</span>
+<span class="go">the eyes, don't look around the eyes,</span>
+<span class="go">look into my eyes, you're under.</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="n">initial_indent</span><span class="o">=</span><span class="s1">'    '</span><span class="p">))</span>
+<span class="go">    Look into my eyes, look into my</span>
+<span class="go">eyes, the eyes, the eyes, the eyes, not</span>
+<span class="go">around the eyes, don't look around the</span>
+<span class="go">eyes, look into my eyes, you're under.</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="n">subsequent_indent</span><span class="o">=</span><span class="s1">'    '</span><span class="p">))</span>
+<span class="go">Look into my eyes, look into my eyes,</span>
+<span class="go">    the eyes, the eyes, the eyes, not</span>
+<span class="go">    around the eyes, don't look around</span>
+<span class="go">    the eyes, look into my eyes, you're</span>
+<span class="go">    under.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>讨论<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">textwrap</span></code> 模块对于字符串打印是非常有用的，特别是当你希望输出自动匹配终端大小的时候。
+你可以使用 <code class="docutils literal notranslate"><span class="pre">os.get_terminal_size()</span></code> 方法来获取终端的大小尺寸。比如：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">get_terminal_size</span><span class="p">()</span><span class="o">.</span><span class="n">columns</span>
+<span class="go">80</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">fill()</span></code> 方法接受一些其他可选参数来控制tab，语句结尾等。
+参阅 <a class="reference external" href="https://docs.python.org/3.6/library/textwrap.html#textwrap.TextWrapper">textwrap.TextWrapper文档</a> 获取更多内容。</p>
+</div>
+</div>
+        </body>
+        </html>
+        
